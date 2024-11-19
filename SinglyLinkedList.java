@@ -1,10 +1,11 @@
 import java.util.Scanner;
+
 public class SinglyLinkedList{
 
     private static class Node{
         int data;
         Node next;
-    
+
         Node(int data){
             this.data = data;
             this.next = null;
@@ -15,7 +16,7 @@ public class SinglyLinkedList{
     private Node head;
 
     //insert the node at the end of the list
-    public void addEnd(int data){
+    private void addEnd(int data){
         Node newNode = new Node(data);
 
         if(head == null){
@@ -30,15 +31,15 @@ public class SinglyLinkedList{
     }
 
     //insert the node at the beginning
-    public void addBegin(int data){
+    private void addBegin(int data){
         Node newNode = new Node(data);
 
-            newNode.next = head;
-            head = newNode;
+        newNode.next = head;
+        head = newNode;
     }
 
     //add node from the mid
-    public void addMid(int data){
+    private void addMid(int data){
         Node newNode = new Node(data);
         if(head == null){
             head = newNode;
@@ -57,14 +58,14 @@ public class SinglyLinkedList{
     }
 
     //insertion from any location
-    public void addAny(int data, int location){
+    private void addAny(int data, int location){
         Node newNode = new Node(data);
         if(head == null){
             head = newNode;
         }
         if(location == 1){
-            newNode = head;
-            head = newNode.next;
+            newNode.next = head;
+            head = newNode;
         }
         else{
             Node current = head;
@@ -83,7 +84,7 @@ public class SinglyLinkedList{
     }
 
     //delete from start
-    public void delStart(){
+    private void delStart(){
         if(head == null){
             System.out.println("List is already empty");
         }else{
@@ -91,7 +92,7 @@ public class SinglyLinkedList{
         }
     }
     //delete from end
-    public void delEnd(){
+    private void delEnd(){
         if(head == null){
             System.out.println("List is already empty");
         }
@@ -108,7 +109,7 @@ public class SinglyLinkedList{
     }
 
     //delete from mid
-    public void delMid(){
+    private void delMid(){
         if(head == null){
             System.out.println("List is empty");
         }else if(head.next == null){
@@ -133,7 +134,7 @@ public class SinglyLinkedList{
     }
 
     //delete from any location
-    public void delAny(int position){
+    private void delAny(int position){
         if(head == null){
             System.out.println("List is empty");
         }
@@ -141,23 +142,23 @@ public class SinglyLinkedList{
             head = head.next;
         }
         else{
-        Node current = head;
-        Node previous = head;
+            Node current = head;
+            Node previous = head;
 
-        int count = 1;
-        while (count != position){
-            previous = current;
-            current = current.next;
-            count++;
-        }
+            int count = 1;
+            while (count != position){
+                previous = current;
+                current = current.next;
+                count++;
+            }
 
-        previous.next = current.next;
-        current.next = null;
+            previous.next = current.next;
+            current.next = null;
         }
     }
 
     //get size of the linked list
-    public int getSize(){
+    private int getSize(){
         Node current = head;
         int count = 0;
         while(current != null){
@@ -168,7 +169,7 @@ public class SinglyLinkedList{
     }
 
     //display list
-    public void display(){
+    private void display(){
         if(head == null){
             System.out.println("List is empty");
         }else{
@@ -254,36 +255,36 @@ public class SinglyLinkedList{
                 case 4:
                     System.out.println("Insertion at any location");
                     System.out.print("Where you want to store the data: ");
-                        if(!input.hasNextInt()){
-                            System.out.println("Please enter valid data. It should be positive integer");
-                        }
-                        int location = input.nextInt();
-                        if(location <= 0){
-                            System.out.print("Enter the data: ");
-                            if(!input.hasNextInt()) {
-                                System.out.println("Please enter valid data. It should be positive integer");
-                            }
-                            int data1 = input.nextInt();
-                            lst.addBegin(data1);
-                            System.out.println("location should be more than 0 or positive currently data is added to the starting of the list");
-                        }else if(location > lst.getSize()) {
-                            System.out.print("Enter the data: ");
-                            if(!input.hasNextInt()) {
-                                System.out.println("Please enter valid data. It should be positive integer");
-                            }
-                            int data1 = input.nextInt();
-                            lst.addEnd(data1);
-                            System.out.println("location should be less than size currently data is added to the end of the list");
-                        }else{
-                    System.out.print("Enter the data: ");
                     if(!input.hasNextInt()){
                         System.out.println("Please enter valid data. It should be positive integer");
                     }
+                    int location = input.nextInt();
+                    if(location <= 0){
+                        System.out.print("Enter the data: ");
+                        if(!input.hasNextInt()) {
+                            System.out.println("Please enter valid data. It should be positive integer");
+                        }
+                        int data1 = input.nextInt();
+                        lst.addBegin(data1);
+                        System.out.println("location should be more than 0 or positive currently data is added to the starting of the list");
+                    }else if(location > lst.getSize()) {
+                        System.out.print("Enter the data: ");
+                        if(!input.hasNextInt()) {
+                            System.out.println("Please enter valid data. It should be positive integer");
+                        }
+                        int data1 = input.nextInt();
+                        lst.addEnd(data1);
+                        System.out.println("location should be less than size currently data is added to the end of the list");
+                    }else{
+                        System.out.print("Enter the data: ");
+                        if(!input.hasNextInt()){
+                            System.out.println("Please enter valid data. It should be positive integer");
+                        }
                         int data1 = input.nextInt();
 
                         lst.addAny(data1, location);
                     }
-                        lst.display();
+                    lst.display();
                     break;
                 case 5:
                     System.out.println("Delete from start");
@@ -315,9 +316,9 @@ public class SinglyLinkedList{
                     lst.display();
                     break;
                 case 9:
-                        status = false;
+                    status = false;
                     System.out.println("Exiting!!!");
-                        break;
+                    break;
                 default:
                     System.out.println("Please enter valid input");
             }
