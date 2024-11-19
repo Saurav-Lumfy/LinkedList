@@ -1,14 +1,15 @@
 import java.util.Scanner;
-class Node{
-    int data;
-    Node next;
-
-    Node(int data){
-        this.data = data;
-        this.next = null;
-    }
-}
 public class SinglyLinkedList{
+
+    private static class Node{
+        int data;
+        Node next;
+    
+        Node(int data){
+            this.data = data;
+            this.next = null;
+        }
+    }
 
     //creating head
     private Node head;
